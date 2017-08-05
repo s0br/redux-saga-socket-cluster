@@ -13,7 +13,8 @@ import {
   CHANNEL_MESSAGE,
 } from './actions';
 
-function channelState(channel, state = {
+function singleChannelReducer(channel, state = {
+  name: '',
   state: 'subscribed',
   receivedMessages: [],
   sentMessages: [],
@@ -22,6 +23,7 @@ function channelState(channel, state = {
     case CHANNEL_STATE_CHANGED:
       return {
         ...state,
+        name: channel,
         state: action.state,
       };
     case CHANNEL_PUBLISHED:
@@ -45,15 +47,15 @@ function channelState(channel, state = {
   }
 }
 
-function channelsState(state = {}, action) {
+function channelsReducer(state = {}, action) {
   const { channel } = action;
   return {
     ...state,
-    [channel]: channelState(channel, state[channel], action),
+    [channel]: singleChannelReducer(channel, state[channel], action),
   };
 }
 
-function socketsState(state = {}, action) {
+function socketsReducer(state = {}, action) {
   switch (action.type) {
     case SOCKET_CREATED:
       return {
@@ -140,7 +142,7 @@ function socketsState(state = {}, action) {
         ...state,
         [action.label]: {
           ...state[action.label],
-          channels: channelsState(state[action.label].channels, action),
+          channels: channelsReducer(state[action.label].channels, action),
         },
       };
     default:
@@ -148,8 +150,4 @@ function socketsState(state = {}, action) {
   }
 }
 
-export default (state = {
-  sockets: {},
-}, action) => ({
-  sockets: socketsState(state.sockets, action),
-});
+export default socketsReducer;

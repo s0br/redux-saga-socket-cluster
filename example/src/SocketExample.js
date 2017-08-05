@@ -12,7 +12,7 @@ import {
 import SocketHandler from './SocketHandler';
 
 const mapStateToProps = state => ({
-  sockets: state.socketcluster.sockets,
+  sockets: state.socketcluster,
 });
 const mapDispatchToProps = dispatch => bindActionCreators(
   {
