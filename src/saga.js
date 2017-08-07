@@ -1,3 +1,5 @@
+import regeneratorRuntime from "regenerator-runtime";
+
 import { END } from 'redux-saga';
 import { fork, take } from 'redux-saga/effects';
 

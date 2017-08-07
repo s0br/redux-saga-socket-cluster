@@ -1,3 +1,4 @@
+import regeneratorRuntime from "regenerator-runtime";
 /* eslint-disable import/prefer-default-export */
 import { call, take, put } from 'redux-saga/effects';
 import {

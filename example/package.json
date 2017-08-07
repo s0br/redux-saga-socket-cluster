@@ -18,7 +18,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.6",
-    "redux-saga-socket-cluster": "^0.0.2"
+    "redux-saga-socket-cluster": "git+https://github.com/s0br/redux-saga-socket-cluster.git#develop"
   },
   "scripts": {
     "start": "react-scripts start",

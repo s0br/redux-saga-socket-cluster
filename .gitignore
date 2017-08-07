@@ -3,3 +3,4 @@
 /dist
 .npmignore
 yarn.lock
+.package-lock.json
